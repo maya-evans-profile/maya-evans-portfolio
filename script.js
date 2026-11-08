@@ -13,3 +13,9 @@ if ('IntersectionObserver' in window) {
 } else {
   cards.forEach(card => card.classList.add('visible'));
 }
+
+// Keep only the last About avatar if an older page version contains a duplicate.
+const aboutAvatars = document.querySelectorAll('.about-profile img');
+aboutAvatars.forEach((avatar, index) => {
+  if (index < aboutAvatars.length - 1) avatar.remove();
+});
