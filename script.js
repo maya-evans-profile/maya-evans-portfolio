@@ -14,8 +14,15 @@ if ('IntersectionObserver' in window) {
   cards.forEach(card => card.classList.add('visible'));
 }
 
-// Keep only the last About avatar if an older page version contains a duplicate.
-const aboutAvatars = document.querySelectorAll('.about-profile img');
-aboutAvatars.forEach((avatar, index) => {
-  if (index < aboutAvatars.length - 1) avatar.remove();
-});
+// Rebuild the About avatar area so an old or duplicated broken image cannot remain.
+const aboutProfile = document.querySelector('.about-profile');
+if (aboutProfile) {
+  const kicker = aboutProfile.querySelector('.section-kicker');
+  aboutProfile.querySelectorAll('img, .about-avatar').forEach(avatar => avatar.remove());
+  const avatar = document.createElement('img');
+  avatar.src = 'assets/avatar.png';
+  avatar.alt = 'Maya_Evans avatar';
+  avatar.className = 'about-avatar';
+  if (kicker) kicker.insertAdjacentElement('afterend', avatar);
+  else aboutProfile.appendChild(avatar);
+}
