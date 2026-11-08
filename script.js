@@ -13,3 +13,13 @@ if ('IntersectionObserver' in window) {
 } else {
   cards.forEach(card => card.classList.add('visible'));
 }
+
+// Показываем аватар под заголовком About Me.
+const aboutKicker = document.querySelector('#about .section-kicker');
+if (aboutKicker) {
+  const avatar = document.createElement('img');
+  avatar.className = 'about-avatar';
+  avatar.src = 'assets/maya-avatar.jpg';
+  avatar.alt = 'Аватар Maya_Evans';
+  aboutKicker.insertAdjacentElement('afterend', avatar);
+}
